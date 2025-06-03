@@ -12,7 +12,7 @@ df.set_index("Title", inplace=True)
 
 # Filter Artist
 artists = df["Artist"].unique()
-artist_box = st.selectbox(label = "Artista", options = artists)
+artist_box = st.sidebar.selectbox(label = "Artista", options = artists) # Se você adicionar um "sidebar" apenas depois do st, ele vai ficar na lateral
 filtro = ((df["Artist"] == artist_box))
 df_filtered_by_artist = df[filtro]
 
