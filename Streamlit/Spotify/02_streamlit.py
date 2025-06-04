@@ -1,20 +1,29 @@
 import pandas as pd
 import streamlit as st
+import time
 
-# Page layout
+# ----------------------------------------------------- PAGE LAYOUT --------------------------------------------------------------------------
 st.set_page_config(layout="wide",page_title="Spotify Streamlit App")
 
 
+# ----------------------------------------------------- DATA PULL --------------------------------------------------------------------------
 
-# Dataframe
-df = pd.read_csv('01 Spotify.csv')
+# Cria uma fórmula que guarda o dado em cache
+@st.cache_data
+def load_data(csv_file):
+    df = pd.read_csv(csv_file)
+    time.sleep(5) # simula um carregamento pesado para entender o cache
+    return df
 
 # Inicializa o session state (de acordo com a documentação oficial)
+df = load_data(csv_file='01 Spotify.csv')
 if "df_spotify" not in st.session_state:
     st.session_state["df_spotify"] = df # Guardando os dados em um state para ser acessado mais facilmente por outros states/pessoas
 
 df.set_index("Title", inplace=True)
 
+
+# ----------------------------------------------------- DASHBOARD --------------------------------------------------------------------------
 
 # Filter Artist
 artists = df["Artist"].unique()
