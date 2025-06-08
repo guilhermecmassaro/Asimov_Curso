@@ -4,7 +4,7 @@ import streamlit as st
 st.set_page_config(
     page_title="FIFA23 - Players",
     page_icon="⛹️‍♂️",
-    # layout="wide"
+    layout="wide"
 )
 
 # Pulling the data from Session State
@@ -22,7 +22,7 @@ st.sidebar.markdown("Desenvolvido por [Asimov Academy](https://asimov.academy)")
 
 
 # Dashboard
-df_line_player = df_fifa[df_fifa['Name'] == players_box].iloc[0] # Iloc retorna a string
+df_line_player = df_fifa[df_fifa['Name'] == players_box].iloc[0] # Iloc retorna a string, sem isso dá erro ao selecionar o dataframe
 
 st.image(df_line_player["Photo"])
 st.title(df_line_player['Name'])
@@ -30,6 +30,7 @@ st.title(df_line_player['Name'])
 st.markdown(f"Clube: {df_line_player['Club']}")
 st.markdown(f"Posição: {df_line_player['Position']}")
 
+# --
 col1, col2, col3 = st.columns(3)
 
 with col1: 
@@ -40,3 +41,29 @@ with col2:
 
 with col3: 
     st.markdown(f"**Peso:** {df_line_player['Weight(lbs.)']*0.453:.1f}")
+
+# --
+
+st.divider()
+
+# --
+st.subheader(f"Overall {df_line_player['Overall']}")
+st.progress(value=int(df_line_player[['Overall']]))
+# --
+
+# --
+
+col1, col2, col3, col4 = st.columns(4)
+with col1:
+    st.metric(label = "Valor de mercado", value=f"£ {df_line_player['Value(£)']:,}")
+
+with col2:
+    st.metric(label = "Remuneração Semanal", value=f"£ {df_line_player['Wage(£)']:,}")
+
+with col3:
+    st.metric(label = "Cláusula de rescisão", value=f"£ {df_line_player['Release Clause(£)']:,}")
+ 
+
+
+# --
+
