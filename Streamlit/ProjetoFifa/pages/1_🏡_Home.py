@@ -5,7 +5,7 @@ import pandas as pd
 st.set_page_config(
     page_title="FIFA23 - Home",
     page_icon="🏡",
-    # layout="wide"
+    layout="wide",
 )
 
 # Title

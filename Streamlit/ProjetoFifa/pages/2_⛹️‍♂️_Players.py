@@ -18,7 +18,7 @@ club_box = st.sidebar.selectbox("Escolha o clube",options= all_clubs)
 club_players = df_fifa[df_fifa["Club"] == club_box]['Name']
 players_box = st.sidebar.selectbox("Escolha o jogador",options= club_players)
 
-st.sidebar.markdown("Desenvolvido por [Asimov Academy](https://asimov.academy)")
+# st.sidebar.markdown("Desenvolvido por [Asimov Academy](https://asimov.academy)")
 
 
 # Dashboard
