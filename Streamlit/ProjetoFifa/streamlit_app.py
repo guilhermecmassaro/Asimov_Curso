@@ -6,7 +6,7 @@ from pathlib import Path
 # ----------------------------------------- DATABASES - SESSION STATES ----------------------------------------------
 
 # Important session states
-dataset_folder = Path(__file__).parent / "datasets"
+# dataset_folder = Path(__file__).parent / "datasets"
 if "fifa_data" not in st.session_state:
     #df_fifa = pd.read_csv(dataset_folder/'CLEAN_FIFA23_official_data.csv',index_col=0)
     df_fifa = pd.read_csv('datasets/CLEAN_FIFA23_official_data.csv',index_col=0)
@@ -19,7 +19,7 @@ if "fifa_data" not in st.session_state:
 # ----------------------------------------- PAGES ----------------------------------------------
 
 # Define the pages
-pages_folder = Path(__file__).parent / "pages"
+# pages_folder = Path(__file__).parent / "pages"
 main_page = st.Page("pages/1_🏡_Home.py")
 page_2 = st.Page("pages/2_⛹️‍♂️_Players.py")
 page_3 = st.Page("pages/3_⚽_Teams.py")
