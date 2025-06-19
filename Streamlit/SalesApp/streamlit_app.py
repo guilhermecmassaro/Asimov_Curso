@@ -6,26 +6,30 @@ from pathlib import Path
 # ----------------------------------------- DATABASES - SESSION STATES ----------------------------------------------
 
 # Important session states
-# dataset_folder = Path(__file__).parent / "datasets"
-if "fifa_data" not in st.session_state:
-    #df_fifa = pd.read_csv(dataset_folder/'CLEAN_FIFA23_official_data.csv',index_col=0)
-    df_fifa = pd.read_csv('datasets/CLEAN_FIFA23_official_data.csv',index_col=0)
-    df_fifa = df_fifa[df_fifa["Contract Valid Until"] >= datetime.today().year]
-    df_fifa = df_fifa[df_fifa["Value(£)"] > 0]
-    df_fifa = df_fifa.sort_values(by="Overall",ascending=False)
-    st.session_state["fifa_data"] = df_fifa
+if "vendas" not in st.session_state:
+    df_vendas = pd.read_csv("datasets/vendas.csv", sep = ";", decimal=",", index_col=0, parse_dates=True)
+    st.session_state["vendas"] = df_vendas
+
+if "produtos" not in st.session_state:
+    df_produtos = pd.read_csv("datasets/produtos.csv", sep = ";", decimal=",", index_col=0, parse_dates=True)
+    st.session_state["produtos"] = df_produtos
+
+if "filiais" not in st.session_state:
+    df_filiais = pd.read_csv("datasets/filiais.csv", sep = ";", decimal=",", index_col=0, parse_dates=True)
+    st.session_state["filiais"] = df_filiais
 
 
 # ----------------------------------------- PAGES ----------------------------------------------
 
 # Define the pages
-# pages_folder = Path(__file__).parent / "pages"
-main_page = st.Page("pages/1_🏡_Home.py")
-page_2 = st.Page("pages/2_⛹️‍♂️_Players.py")
-page_3 = st.Page("pages/3_⚽_Teams.py")
+main_page = st.Page("pages/1_Home.py")
+page_2 = st.Page("pages/2_Visão_Geral.py")
+page_3 = st.Page("pages/3_Visualização_Dinâmica.py")
+page_4 = st.Page("pages/4_Tabelas.py")
+page_5 = st.Page("pages/5_Adição_e_Remoção_de_Vendas.py")
 
 # Set up navigation
-pg = st.navigation([main_page, page_2, page_3])
+pg = st.navigation([main_page, page_2, page_3, page_4, page_5])
 
 # Run the selected page
 pg.run()
